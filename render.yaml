@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: my-puppeteer-service
+    env: node
+    plan: starter
+    # Specify your Node version if needed
+    buildCommand: |
+      # Create a writable cache folder
+      mkdir -p .puppeteer_cache
+      # Set Puppeteer cache to that folder
+      export PUPPETEER_CACHE_DIR=$(pwd)/.puppeteer_cache
+      # Install dependencies
+      npm install
+      # Install Chrome for Puppeteer into the cache
+      npx puppeteer browsers install chrome
+    startCommand: node server.js
+    envVars:
+      - key: PUPPETEER_CACHE_DIR
+        value: .puppeteer_cache
