@@ -28,7 +28,7 @@ async function generatePDF(patient) {
     const filepath = path.join(uploadsDir, filename);
     
     await page.pdf({
-      path: filepath,
+      // path: filepath,
       format: 'A4',
       printBackground: true,
       margin: {
