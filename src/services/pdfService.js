@@ -10,6 +10,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 async function generatePDF(patient) {
   try {
+    console.log("herererere---====")
     const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -28,7 +29,7 @@ async function generatePDF(patient) {
     const filepath = path.join(uploadsDir, filename);
     
     await page.pdf({
-      // path: filepath,
+      path: filepath,
       format: 'A4',
       printBackground: true,
       margin: {
@@ -56,6 +57,7 @@ function generateHTMLContent(patient) {
       day: 'numeric'
     });
   };
+  console.log("calling ---===--")
 
   return `
     <!DOCTYPE html>

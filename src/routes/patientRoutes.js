@@ -9,16 +9,16 @@ router.post('/', async (req, res) => {
     const patientData = req.body;
     const patient = new Patient(patientData);
     
-    // Generate PDF
-    const pdfPath = await generatePDF(patient);
-    patient.pdfPath = pdfPath;
+    // // Generate PDF
+    // const pdfPath = await generatePDF(patient);
+    // patient.pdfPath = pdfPath;
     
     await patient.save();
     
     res.status(201).json({
       success: true,
       data: patient,
-      pdfUrl: `${req.protocol}://${req.get('host')}/uploads/${pdfPath}`
+      // pdfUrl: `${req.protocol}://${req.get('host')}/uploads/${pdfPath}`
     });
   } catch (error) {
     res.status(400).json({
